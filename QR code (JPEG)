@@ -1,0 +1,20 @@
+import qrcode
+from PIL import Image
+
+#Create a QR code instance
+qr = qrcode.QRCode(
+    version=1, #controls the size of the QR code, higher number = bigger code
+    error_correction=qrcode.constants.ERROR_CORRECT_L, #Controls the error connection level
+    box_size=10, #Size of each box in the QR code
+    border=1, #Thickness of the border (minimum is 4)
+)
+
+#Add data to the QR code
+qr.add_data("Never gonna give you up, Never gonna let you down")
+qr.make(fit=True)
+
+#Creates an image from the QR code
+img = qr.make_image(fill_color='red', back_color='black')
+
+#Save the image as a JPEG file
+img.save("qr_code_output.jpg")
